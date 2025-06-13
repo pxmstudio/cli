@@ -30,10 +30,22 @@ const WEBFLOW_WEBSITE_TEMPLATES: Template[] = [
     description: 'Vite with Cloudflare D1 database'
   },
   {
+    name: 'workers-d1-drizzle',
+    display: 'Vite + D1 + Drizzle',
+    color: yellow,
+    description: 'Vite with Cloudflare D1 database and Drizzle ORM'
+  },
+  {
     name: 'workers-supabase',
     display: 'Vite + Supabase',
     color: green,
     description: 'Vite with Supabase database'
+  },
+  {
+    name: 'workers-supabase-drizzle',
+    display: 'Vite + Supabase + Drizzle',
+    color: green,
+    description: 'Vite with Supabase database and Drizzle ORM'
   }
 ]
 
@@ -76,6 +88,16 @@ function updatePackageJson(projectPath: string, projectName: string) {
     const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'))
     packageJson.name = projectName
     writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
+  }
+}
+
+function updateReadme(projectPath: string, projectName: string) {
+  const readmePath = join(projectPath, 'README.md')
+  if (existsSync(readmePath)) {
+    let readme = readFileSync(readmePath, 'utf-8')
+    // Replace the default project name with the actual project name
+    readme = readme.replace(/webflow-starter/g, projectName)
+    writeFileSync(readmePath, readme)
   }
 }
 
@@ -171,6 +193,7 @@ ${cyan('Options:')}
 ${cyan('Examples:')}
   pixelmakers my-app
   pixelmakers my-app --list
+  pixelmakers .    # Create project in current directory
 `)
     return
   }
@@ -192,7 +215,7 @@ ${cyan('Examples:')}
     return
   }
   
-  const defaultProjectName = 'webflow-project'
+  const defaultProjectName = targetDir === '.' ? 'webflow-project' : 'webflow-project'
   
   let result: {
     projectName?: string
@@ -335,7 +358,7 @@ ${cyan('Examples:')}
     return
   }
   
-  const root = join(process.cwd(), targetDir)
+  const root = targetDir === '.' ? process.cwd() : join(process.cwd(), targetDir)
   
   if (shouldOverwrite) {
     emptyDir(root)
@@ -349,6 +372,7 @@ ${cyan('Examples:')}
   copyDir(templateDir, root)
   
   updatePackageJson(root, packageName || projectName || targetDir)
+  updateReadme(root, packageName || projectName || targetDir)
   
   // Add optional packages for Webflow Website projects
   if (platform === 'webflow' && projectType === 'website') {
@@ -415,7 +439,7 @@ ${cyan('Examples:')}
     console.log(`  2. Update your app settings in wrangler.jsonc`)
   }
   
-  console.log(`\n${cyan('🎉 Happy coding!')} Made with ❤️ by ${cyan('Pixelmakers')}`)
+  console.log(`\n${cyan('🎉 Happy coding!')} Made with ❤️  by ${cyan('Pixelmakers')}`)
   console.log(`${yellow('📚 Need help?')} Visit: https://github.com/pixelmakers/cli`)
   console.log()
 }
@@ -430,7 +454,8 @@ function emptyDir(dir: string) {
     return
   }
   for (const file of readdirSync(dir)) {
-    if (file === '.git') {
+    // Skip .git directory and hidden files
+    if (file === '.git' || file.startsWith('.')) {
       continue
     }
     const filePath = join(dir, file)

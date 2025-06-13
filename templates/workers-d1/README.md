@@ -20,13 +20,9 @@ This project provides a setup for building Webflow projects with Vite frontend, 
    npm run db:migrate
    ```
 
-4. **Start development servers:**
+4. **Start development server:**
    ```bash
-   # Frontend
    npm run dev
-   
-   # Workers (in another terminal)
-   npm run worker:dev
    ```
 
 ## Project Structure
@@ -76,7 +72,6 @@ npm run db:migrate:prod
 ## API Routes
 
 The Workers backend includes:
-- `GET /api/hello` - Simple hello world endpoint
 - `GET /api/users` - Get all users from D1 database
 - `POST /api/users` - Create a new user in D1 database
 
@@ -114,30 +109,95 @@ npm run db:console "SELECT * FROM users"
 
 ## Adding to Webflow
 
-Add the integration script to your Webflow project (same as basic template) - see the main README for details.
+Add this script to your Webflow project in **Settings > Custom Code > Footer Code**:
+
+```html
+<script>
+  (function () {
+    const CONFIG = {
+      localhost: 'http://localhost:5173',
+      staging: 'https://[deployment-id]-your-worker.workers.dev', 
+      production: 'https://your-worker.workers.dev'
+    };
+
+    const PATHS = {
+      localhost: ['@vite/client', 'src/main.ts'],
+      build: ['/main.js']
+    };
+
+    function loadScripts(urls) {
+      urls.forEach(url => {
+        const script = document.createElement('script');
+        script.src = url;
+        script.type = "module";
+        script.onerror = () => console.error('Failed to load:', url);
+        document.body.appendChild(script);
+      });
+    }
+
+    function init() {
+      // Try localhost first
+      fetch(`${CONFIG.localhost}/${PATHS.localhost[0]}`, { method: 'HEAD', mode: 'no-cors' })
+        .then(() => {
+          // Localhost available
+          console.log('🚀 Development mode');
+          const urls = PATHS.localhost.map(path => `${CONFIG.localhost}/${path}`);
+          loadScripts(urls);
+        })
+        .catch(() => {
+          // Use staging or production
+          const isStaging = window.location.href.includes('.webflow.io');
+          const domain = isStaging ? CONFIG.staging : CONFIG.production;
+          const env = isStaging ? 'staging' : 'production';
+          
+          console.log(`🌐 ${env.charAt(0).toUpperCase() + env.slice(1)} mode`);
+          const urls = PATHS.build.map(path => domain + path);
+          loadScripts(urls);
+        });
+    }
+
+    // Start when ready
+    document.readyState === 'loading' 
+      ? document.addEventListener('DOMContentLoaded', init)
+      : init();
+  })();
+</script>
+```
 
 ## Deployment
 
-1. **Create production database:**
+1. **Build the frontend:**
    ```bash
-   wrangler d1 create webflow-db-prod
+   npm run build
    ```
 
-2. **Update wrangler.jsonc** with production database ID
+2. **Deploy via GitHub Integration:**
+   - Push your code to a GitHub repository
+   - In the Cloudflare Dashboard, go to Compute (Workers) > your Worker > Create
+   - Under "Workers", click "Import a repository"
+   - Select your repository and branch
+   - Cloudflare will automatically deploy your Worker when you push changes
 
-3. **Apply migrations to production:**
-   ```bash
-   npm run db:migrate:prod
-   ```
+3. **Update the Webflow script** with your deployed Workers domain.
 
-4. **Deploy Workers:**
-   ```bash
-   npm run worker:deploy
-   ```
+4. **Preview Deployments**
+   Cloudflare automatically creates preview deployments for each code push to your repository. These previews are useful for:
+   - Testing changes before they go to production
+   - Sharing work-in-progress with clients
+   - Reviewing changes in a staging environment
+   
+   Preview URLs follow this pattern:
+   - Production: `https://your-worker.workers.dev`
+   - Preview: `https://[deployment-id]-your-worker.workers.dev`
+   
+   To use a preview deployment:
+   1. Push your changes to GitHub
+   2. Find the preview URL in your GitHub pull request or Cloudflare dashboard
+   3. Update the `staging` URL in your Webflow script to test the preview
 
 ## Development Tips
 
 - Use `wrangler d1 execute` to run SQL commands during development
 - Check the D1 dashboard in Cloudflare for database management
 - Use proper indexes for better query performance
-- Always test your database operations locally first 
+- Always test your database operations locally first

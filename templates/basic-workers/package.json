@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "worker:dev": "wrangler dev",
     "worker:deploy": "wrangler deploy"
   },
   "devDependencies": {

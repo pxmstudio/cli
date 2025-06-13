@@ -15,12 +15,6 @@ This project provides a basic setup for building Webflow projects with Vite fron
    ```
    This starts the Vite development server on `http://localhost:5173`
 
-3. **Start Workers development server:**
-   ```bash
-   npm run worker:dev
-   ```
-   This starts the Cloudflare Workers dev server on `http://localhost:8787`
-
 ## Project Structure
 
 ```
@@ -43,13 +37,13 @@ Add this script to your Webflow project in **Settings > Custom Code > Footer Cod
   (function () {
     const CONFIG = {
       localhost: 'http://localhost:5173',
-      staging: 'https://your-staging-domain.workers.dev', 
-      production: 'https://your-production-domain.workers.dev'
+      staging: 'https://[deployment-id]-your-worker.workers.dev', 
+      production: 'https://your-worker.workers.dev'
     };
 
     const PATHS = {
       localhost: ['@vite/client', 'src/main.ts'],
-      build: ['/dist/main.js']
+      build: ['/main.js']
     };
 
     function loadScripts(urls) {
@@ -98,23 +92,40 @@ Add this script to your Webflow project in **Settings > Custom Code > Footer Cod
    npm run build
    ```
 
-2. **Deploy the Workers:**
-   ```bash
-   npm run worker:deploy
-   ```
+2. **Deploy via GitHub Integration:**
+   - Push your code to a GitHub repository
+   - In the Cloudflare Dashboard, go to Compute (Workers) > your Worker > Create
+   - Under "Workers", click "Import a repository"
+   - Select your repository and branch
+   - Cloudflare will automatically deploy your Worker when you push changes
 
 3. **Update the Webflow script** with your deployed Workers domain.
+
+4. **Preview Deployments**
+   Cloudflare automatically creates preview deployments for each code push to your repository. These previews are useful for:
+   - Testing changes before they go to production
+   - Sharing work-in-progress with clients
+   - Reviewing changes in a staging environment
+   
+   Preview URLs follow this pattern:
+   - Production: `https://your-worker.workers.dev`
+   - Preview: `https://[deployment-id]-your-worker.workers.dev`
+   
+   To use a preview deployment:
+   1. Push your changes to GitHub
+   2. Find the preview URL in your GitHub pull request or Cloudflare dashboard
+   3. Update the `staging` URL in your Webflow script to test the preview
 
 ## API Routes
 
 The Workers backend includes:
-- `GET /api/hello` - Simple hello world endpoint
+- `GET /api/hello` - Example simple hello world endpoint
 
 Add more routes in `worker/index.ts` as needed.
 
 ## Development Workflow
 
-1. Start both development servers (`npm run dev` and `npm run worker:dev`)
+1. Start development server (`npm run dev`)
 2. Make changes to your frontend code in `src/`
 3. Make changes to your backend code in `worker/`
 4. Test your integration in Webflow with the development script

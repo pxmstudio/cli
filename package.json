@@ -1,6 +1,6 @@
 {
   "name": "@pixelmakers/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Create Vite + Webflow / Shopify projects.",
   "type": "module",
   "bin": {
@@ -46,5 +46,8 @@
   "homepage": "https://github.com/pixelmakers/cli#readme",
   "bugs": {
     "url": "https://github.com/pixelmakers/cli/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -26,7 +26,6 @@ export default defineConfig({
             },
             output: {
                 format: "es",
-                name: "pxm-site-script",
                 entryFileNames: "main.js",
                 chunkFileNames: "assets/[name].[hash].js",
                 assetFileNames: "assets/[name].[hash][extname]",

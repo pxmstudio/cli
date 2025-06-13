@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/forms";
+
+:root {
+  --color-white: #ffffff;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -o-font-smoothing: antialiased;
+
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--color-bg-white);
+  color: var(--color-text-branding-4);
+}
+
+@theme {
+  --color-bg-white: var(--color-white);
+}
+
+.font-sans {
+  font-family: 'Inter', sans-serif !important;
+}
+
+@utility global-container-max-w {
+  @apply mx-auto max-w-[82.5rem];
+}
+
+@utility global-container-px {
+  @apply px-4 md:px-6 lg:px-8;
+}
+
+@utility global-container-py {
+  @apply py-10 md:py-16 lg:py-32;
+}
+
+@utility global-container {
+  @apply global-container-max-w global-container-px;
+}
+
+@utility global-transition-duration-ease {
+  @apply duration-300 ease-in-out;
+}
+
+@utility global-transition-colors {
+  @apply transition-colors global-transition-duration-ease;
+}

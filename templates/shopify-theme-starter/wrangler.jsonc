@@ -1,0 +1,11 @@
+{
+  "name": "pxm-sf-starter",
+  "main": "worker/index.ts",
+  "compatibility_date": "2025-01-01",
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "ACCESS_CONTROL",
+  //     "id": "YOUR_KV_NAMESPACE_ID"
+  //   }
+  // ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "wf-extension-template",
+  "apiVersion": "2",
+  "publicDir": "dist",
+  "size": "comfortable",
+  "appIntents": {},
+  "appConnections": []
+}

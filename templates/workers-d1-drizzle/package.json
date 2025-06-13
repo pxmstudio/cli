@@ -5,27 +5,34 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc -p tsconfig.drizzle.json && tsc && vite build",
     "preview": "vite preview",
     "worker:dev": "wrangler dev",
     "worker:deploy": "wrangler deploy",
-    "db:create": "wrangler d1 create webflow-db",
-    "db:migrate": "wrangler d1 migrations apply webflow-db --local",
-    "db:migrate:prod": "wrangler d1 migrations apply webflow-db",
-    "db:console": "wrangler d1 execute webflow-db --command",
+    "db:create": "wrangler d1 create webflow-db-1",
+    "db:reset": "wrangler d1 execute webflow-db-1 --local --command='PRAGMA writable_schema = 1; DELETE FROM sqlite_master WHERE type IN (\"table\", \"index\", \"trigger\"); PRAGMA writable_schema = 0; VACUUM;'",
+    "db:migrate": "wrangler d1 migrations apply webflow-db-1 --local",
+    "db:migrate:prod": "wrangler d1 migrations apply webflow-db-1 --remote",
+    "db:console": "wrangler d1 execute webflow-db-1 --command",
     "db:generate": "drizzle-kit generate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "db:up": "drizzle-kit up"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.6.0",
     "@cloudflare/workers-types": "^4.20250613.0",
+    "@types/node": "^24.0.1",
+    "drizzle-kit": "^0.31.1",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
-    "wrangler": "^4.20.0",
-    "drizzle-kit": "^0.32.0"
+    "wrangler": "^4.20.0"
   },
   "dependencies": {
-    "hono": "^4.7.11",
-    "drizzle-orm": "^0.38.0"
+    "@libsql/client": "^0.15.9",
+    "@pixelmakers/elements": "^0.1.17",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.44.2",
+    "gsap": "^3.13.0",
+    "hono": "^4.7.11"
   }
-} 
+}

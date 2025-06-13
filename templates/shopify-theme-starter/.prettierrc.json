@@ -1,0 +1,14 @@
+{
+  "printWidth": 120,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.liquid",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./frontend/entrypoints/main.css"
+}

@@ -1,0 +1,277 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+
+  --text-xs: 0.71875rem;
+  --text-xs--line-height: -0.115px;
+
+  --text-sm: 0.78125rem;
+  --text-sm--line-height: calc(1.5 / 1);
+
+  --text-base: 0.875rem;
+
+  --color-background1: var(--background1);
+  --color-background2: var(--background2);
+  --color-background3: var(--background3);
+  --color-background4: var(--background4);
+  --color-background5: var(--background5);
+  --color-backgroundInactive: var(--backgroundInactive);
+  --color-backgroundInverse: var(--backgroundInverse);
+  --color-backgroundInput: var(--backgroundInput);
+
+  --color-actionPrimaryBackground: var(--actionPrimaryBackground);
+  --color-actionPrimaryBackgroundHover: var(--actionPrimaryBackgroundHover);
+  --color-actionSecondaryBackground: var(--actionSecondaryBackground);
+  --color-actionSecondaryBackgroundHover: var(--actionSecondaryBackgroundHover);
+  --color-actionPrimaryText: var(--actionPrimaryText);
+  --color-actionPrimaryTextHover: var(--actionPrimaryTextHover);
+  --color-actionSecondaryText: var(--actionSecondaryText);
+  --color-actionSecondaryTextHover: var(--actionSecondaryTextHover);
+
+  --color-border1: var(--border1);
+  --color-border2: var(--border2);
+  --color-border3: var(--border3);
+
+  --color-text1: var(--text1);
+  --color-text2: var(--text2);
+  --color-text3: var(--text3);
+  --color-textInactive: var(--textInactive);
+  --color-textInverse: var(--textInverse);
+
+  --color-blueText: var(--blueText);
+  --color-blueIcon: var(--blueIcon);
+  --color-blueBorder: var(--blueBorder);
+
+  --color-greenBackground: var(--greenBackground);
+  --color-greenBackgroundHover: var(--greenBackgroundHover);
+  --color-greenText: var(--greenText);
+  --color-greenIcon: var(--greenIcon);
+  --color-greenBorder: var(--greenBorder);
+
+  --color-yellowBackground: var(--yellowBackground);
+  --color-yellowBackgroundHover: var(--yellowBackgroundHover);
+  --color-yellowText: var(--yellowText);
+  --color-yellowIcon: var(--yellowIcon);
+  --color-yellowBorder: var(--yellowBorder);
+
+  --color-redBackground: var(--redBackground);
+  --color-redBackgroundHover: var(--redBackgroundHover);
+  --color-redText: var(--redText);
+  --color-redIcon: var(--redIcon);
+  --color-redBorder: var(--redBorder);
+  
+  --color-orangeBackground: var(--orangeBackground);
+  --color-orangeBackgroundHover: var(--orangeBackgroundHover);
+  --color-orangeText: var(--orangeText);
+  --color-orangeIcon: var(--orangeIcon);
+  --color-orangeBorder: var(--orangeBorder);
+
+  --color-purpleBackground: var(--purpleBackground);
+  --color-purpleBackgroundHover: var(--purpleBackgroundHover);
+
+  --shadow-01: var(--shadow-01);
+  --inset-shadow-input-inner: var(--input-inner-shadow);
+  --shadow-action-colored: var(--boxShadows-action-colored);
+  --shadow-action-secondary: var(--boxShadows-action-secondary);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background1);
+  --color-foreground: var(--text1);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--background2);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--background3);
+  --color-sidebar-accent-foreground: var(--text1);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@utility bg-actionSecondaryBackground {
+  background: var(--actionSecondaryBackground);
+}
+
+@utility bg-actionSecondaryBackgroundHover {
+  background: var(--actionSecondaryBackgroundHover);
+}
+
+:root {
+  /* Webflow colors */
+  --background1: #1e1e1e;
+  --background2: #2e2e2e;
+  --background3: #383838;
+  --background4: #373737;
+  --background5: #444444;
+  --backgroundInactive: #2e2e2e;
+  --backgroundInverse: #ebebeb;
+  --backgroundInput: rgba(0, 0, 0, 0.15);
+
+  --actionPrimaryBackground: #006acc;
+  --actionPrimaryBackgroundHover: #187cd9;
+  --actionSecondaryBackground: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  --actionSecondaryBackgroundHover: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.16) 100%
+  );
+  --actionPrimaryText: #ffffff;
+  --actionPrimaryTextHover: #ffffff;
+  --actionSecondaryText: #e0e0e0;
+  --actionSecondaryTextHover: #e0e0e0;
+
+  --border1: rgba(255, 255, 255, 0.13);
+  --border2: rgba(255, 255, 255, 0.14);
+  --border3: rgba(255, 255, 255, 0.19);
+
+  --text1: #f5f5f5;
+  --text2: #bdbdbd;
+  --text3: #a3a3a3;
+  --textInactive: #757575;
+  --textInverse: #1e1e1e;
+
+  --blueText: #8ac2ff;
+  --blueIcon: #8ac2ff;
+  --blueBorder: #007df0;
+
+  --greenBackground: #007a41;
+  --greenBackgroundHover: #0d8a4f;
+  --greenText: #63d489;
+  --greenIcon: #63d489;
+  --greenBorder: #259d4d;
+  --yellowBackground: #946b00;
+
+  --yellowBackgroundHover: #af7f00;
+  --yellowText: #f3c831;
+  --yellowIcon: #f3c831;
+  --yellowBorder: #d7a220;
+
+  --redBackground: #cf313b;
+  --redBackgroundHover: #cb3535;
+  --redText: #ff8a8a;
+  --redIcon: #ff8a8a;
+  --redBorder: #e42f3a;
+
+  --orangeBackground: #bf4704;
+  --orangeBackgroundHover: #DC95616;
+  --orangeText: #eba267;
+  --orangeIcon: #eba267;
+  --orangeBorder: #df640c;
+
+  --purpleBackground: #734ce0;
+  --purpleBackgroundHover: #815beb;
+  --purpleText: #b89eff;
+  --purpleIcon: #b89eff;
+  --purpleBorder: #875ffd;
+
+  /* Box shadows for buttons and inputs */
+  --shadow-01: 0px 1px 3px -1px rgba(0, 0, 0, 0.40);
+
+  --boxShadows-action-colored:
+    0px 0.5px 1px 0px rgba(0, 0, 0, 0.8),
+    0px 0.5px 0.5px 0px rgba(255, 255, 255, 0.2) inset;
+  --boxShadows-action-secondary:
+    0px 0.5px 1px rgba(0, 0, 0, 0.8),
+    inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.12);
+  --boxShadows-input-inner:
+    0px 1px 1px -1px rgba(0, 0, 0, 0.13) inset,
+    0px 3px 3px -3px rgba(0, 0, 0, 0.17) inset,
+    0px 4px 4px -4px rgba(0, 0, 0, 0.17) inset,
+    0px 8px 8px -8px rgba(0, 0, 0, 0.17) inset,
+    0px 12px 12px -12px rgba(0, 0, 0, 0.13) inset,
+    0px 16px 16px -16px rgba(0, 0, 0, 0.13) inset;
+
+  --boxShadows-menu:
+    0px 0.5px 0.5px 0px rgba(255, 255, 255, 0.12) inset,
+    0px 12px 24px 8px rgba(0, 0, 0, 0.04), 0px 8px 16px 4px rgba(0, 0, 0, 0.04),
+    0px 4px 8px 2px rgba(0, 0, 0, 0.04), 0px 2px 6px 0px rgba(0, 0, 0, 0.04),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+
+  --input-inner-shadow:
+    0px 1px 1px -1px rgba(0, 0, 0, 0.13) inset,
+    0px 3px 3px -3px rgba(0, 0, 0, 0.17) inset,
+    0px 4px 4px -4px rgba(0, 0, 0, 0.17) inset,
+    0px 8px 8px -8px rgba(0, 0, 0, 0.17) inset,
+    0px 12px 12px -12px rgba(0, 0, 0, 0.13) inset,
+    0px 16px 16px -16px rgba(0, 0, 0, 0.13) inset;
+
+  --menu-shadow:
+    0px 12px 24px 8px rgba(0, 0, 0, 0.08), 0px 8px 16px 4px rgba(0, 0, 0, 0.08),
+    0px 4px 8px 2px rgba(0, 0, 0, 0.08), 0px 2px 6px 0px rgba(0, 0, 0, 0.08),
+    0px -0.5px 0.5px 0px rgba(0, 0, 0, 0.12) inset,
+    0px 0.5px 0.5px 0px rgba(255, 255, 255, 0.12) inset;
+
+  --radius: 0.25rem;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background2 text-text1;
+  }
+}

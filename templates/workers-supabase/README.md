@@ -20,13 +20,9 @@ This project provides a setup for building Webflow projects with Vite frontend, 
    ```
    This will start a local Supabase instance with all services (PostgreSQL, API, Auth, etc.)
 
-4. **Start development servers:**
+4. **Start development server:**
    ```bash
-   # Frontend (in one terminal)
    npm run dev
-   
-   # Workers (in another terminal)  
-   npm run worker:dev
    ```
 
 ## Project Structure
@@ -110,6 +106,36 @@ supabase migration new create_users_table
 
 # Apply migrations
 supabase db reset
+```
+
+### Example Migration
+Here's an example migration that creates a users table with Row Level Security. You can add it to supabase/migrations:
+
+```sql
+-- Create users table
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create index on email for faster lookups
+CREATE INDEX IF NOT EXISTS users_email_idx ON users(email);
+
+-- Enable Row Level Security
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+
+-- Create a policy that allows users to read their own data
+CREATE POLICY "Users can view their own data" ON users
+    FOR SELECT
+    USING (auth.uid() = id);
+
+-- Create a policy that allows users to update their own data
+CREATE POLICY "Users can update their own data" ON users
+    FOR UPDATE
+    USING (auth.uid() = id);
 ```
 
 ### Studio Access

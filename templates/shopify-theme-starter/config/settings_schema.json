@@ -1,0 +1,36 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "PXM Shopify Starter",
+    "theme_version": "0.0.1",
+    "theme_author": "PixelMakers",
+    "theme_documentation_url": "https://pixelmakers.com",
+    "theme_support_url": "https://pixelmakers.com"
+  },
+  {
+    "name": "Icons",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "The favicon is the small icon that appears in the browser tab."
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_black",
+        "label": "Logo Black"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_white",
+        "label": "Logo White"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_color",
+        "label": "Logo Color"
+      }
+    ]
+  }
+]

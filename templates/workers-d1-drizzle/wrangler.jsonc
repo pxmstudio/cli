@@ -1,11 +1,20 @@
 {
-  "name": "pxm-wf-starter",
+  "name": "pxm-d1-drizzle",
   "main": "worker/index.ts",
   "compatibility_date": "2025-01-01",
   "assets": {
     "directory": "./dist",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "run_worker_first": true
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "webflow-db-1",
+      "database_id": "YOUR_DB_ID",
+      "migrations_dir": "./drizzle/migrations"
+    }
+  ],
   // "kv_namespaces": [
   //   {
   //     "binding": "ACCESS_CONTROL",

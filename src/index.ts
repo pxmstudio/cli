@@ -348,9 +348,9 @@ ${cyan('Examples:')}
   let selectedTemplate: string = ''
   
   if (platform === 'shopify') {
-    selectedTemplate = 'shopify-basic'
+    selectedTemplate = 'shopify-theme-starter'
   } else if (platform === 'webflow' && projectType === 'app') {
-    selectedTemplate = 'webflow-app'
+    selectedTemplate = 'webflow-app-starter'
   } else if (platform === 'webflow' && projectType === 'website' && template) {
     selectedTemplate = template
   } else {
@@ -428,9 +428,9 @@ ${cyan('Examples:')}
   }
   
   if (platform === 'shopify') {
-    console.log(`\n${green('Shopify Setup:')}`)
+    console.log(`\n${green('Shopify Theme Setup:')}`)
     console.log(`  1. Install Shopify CLI: npm install -g @shopify/cli`)
-    console.log(`  2. Connect to your store: shopify app dev`)
+    console.log(`  2. Connect to your store: shopify theme dev`)
   }
   
   if (platform === 'webflow' && projectType === 'app') {

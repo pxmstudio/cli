@@ -1,0 +1,19 @@
+<section class="pt-25 pb-14">
+  <div class="global-container grid grid-cols-2 gap-4">
+    <h1 class="text-4xl">{{ section.settings.title }}</h1>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Hello World"
+    }
+  ]
+}
+{% endschema %}

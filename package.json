@@ -1,0 +1,50 @@
+{
+  "name": "@pixelmakers/cli",
+  "version": "0.0.1",
+  "description": "Create Vite + Webflow / Shopify projects.",
+  "type": "module",
+  "bin": {
+    "pixelmakers": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "webflow",
+    "vite",
+    "cloudflare-workers",
+    "starter",
+    "template",
+    "pixelmakers"
+  ],
+  "author": "Pixelmakers",
+  "license": "MIT",
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "kolorist": "^1.8.0",
+    "minimist": "^1.2.8"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.5",
+    "@types/prompts": "^2.4.9",
+    "@types/node": "^22.0.0",
+    "typescript": "~5.8.3"
+  },
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pixelmakers/cli.git"
+  },
+  "homepage": "https://github.com/pixelmakers/cli#readme",
+  "bugs": {
+    "url": "https://github.com/pixelmakers/cli/issues"
+  }
+}

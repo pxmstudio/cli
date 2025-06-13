@@ -66,13 +66,13 @@ Then follow the prompts to select your preferred template!
 
 | Template | Description | Documentation |
 |----------|-------------|---------------|
-| `basic-workers` | Basic WF + Vite setup | [Readme](templates/basic-workers/README.md) |
-| `workers-d1` | WF + Vite + D1 Database | [Readme](templates/workers-d1/README.md) |
-| `workers-d1-drizzle` | WF + Vite + D1 Database with Drizzle ORM | [Readme](templates/workers-d1-drizzle/README.md) |
-| `workers-supabase` | WF + Vite + Supabase Database | [Readme](templates/workers-supabase/README.md) |
-| `workers-supabase-drizzle` | WF + Vite + Supabase Database with Drizzle ORM | [Readme](templates/workers-supabase-drizzle/README.md) |
-| `webflow-app-starter` | Full Webflow app development with OAuth | [Readme](templates/webflow-app-starter/README.md) |
-| `shopify-theme-starter` | Shopify app scaffold with Cloudflare Workers | [Readme](templates/shopify-theme-starter/README.md) |
+| `basic-workers` | Basic WF + Vite setup | [Readme](templates/basic-workers) |
+| `workers-d1` | WF + Vite + D1 Database | [Readme](templates/workers-d1) |
+| `workers-d1-drizzle` | WF + Vite + D1 Database with Drizzle ORM | [Readme](templates/workers-d1-drizzle) |
+| `workers-supabase` | WF + Vite + Supabase Database | [Readme](templates/workers-supabase) |
+| `workers-supabase-drizzle` | WF + Vite + Supabase Database with Drizzle ORM | [Readme](templates/workers-supabase-drizzle) |
+| `webflow-app-starter` | Full Webflow app development with OAuth | [Readme](templates/webflow-app-starter) |
+| `shopify-theme-starter` | Shopify app scaffold with Cloudflare Workers | [Readme](templates/shopify-theme-starter) |
 
 ## License
 

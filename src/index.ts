@@ -473,6 +473,7 @@ ${cyan('Examples:')}
     console.log(`             script.onerror = () => console.error('Failed to load:', url);`)
     console.log(`             document.body.appendChild(script);`)
     console.log(`           });`)
+    console.log(`         }`)
     console.log(``)
     console.log(`         function init() {`)
     console.log(`           // Try localhost first`)

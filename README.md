@@ -28,7 +28,7 @@ Then follow the prompts to select your preferred template!
 - **App Projects**: Full Webflow app development with OAuth and API integration
 
 ### 🛍️ Shopify  
-- **App Development**: Shopify app scaffold with Cloudflare Workers backend
+- **Theme Development**: Shopify theme scaffold with Vite + TailwindCSS + Cloudflare Workers backend
 
 ## Optional Add-ons (Webflow Websites)
 - **GSAP**: Professional animations and interactions

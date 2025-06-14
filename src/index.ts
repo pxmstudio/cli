@@ -368,6 +368,15 @@ ${cyan('Examples:')}
   console.log(`\n${cyan('🚀 Pixelmakers CLI')} - Scaffolding project in ${root}...`)
 
   const templateDir = join(__dirname, '..', 'templates', selectedTemplate)
+  
+  // Verify template structure
+  const workerDir = join(templateDir, 'worker')
+  if (!existsSync(workerDir)) {
+    console.error(red('✖') + ` Template "${selectedTemplate}" is missing the worker folder!`)
+    console.error(yellow('  Please report this issue at: https://github.com/pxmstudio/cli/issues'))
+    process.exit(1)
+  }
+  
   copyDir(templateDir, root)
   
   updatePackageJson(root, packageName || projectName || targetDir)
@@ -464,7 +473,6 @@ ${cyan('Examples:')}
     console.log(`             script.onerror = () => console.error('Failed to load:', url);`)
     console.log(`             document.body.appendChild(script);`)
     console.log(`           });`)
-    console.log(`         }`)
     console.log(``)
     console.log(`         function init() {`)
     console.log(`           // Try localhost first`)
@@ -485,6 +493,7 @@ ${cyan('Examples:')}
     console.log(`               const urls = PATHS.build.map(path => domain + path);`)
     console.log(`               loadScripts(urls);`)
     console.log(`             });`)
+    console.log(``)
     console.log(`         }`)
     console.log(``)
     console.log(`         // Start when ready`)

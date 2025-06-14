@@ -1,6 +1,6 @@
 {
   "name": "@pixelmakers/cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Create Vite + Webflow / Shopify projects.",
   "type": "module",
   "bin": {

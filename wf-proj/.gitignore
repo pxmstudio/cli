@@ -1,0 +1,74 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Testing
+coverage
+.nyc_output
+
+# Build output
+build
+out
+
+# Cache
+.cache
+.temp
+.eslintcache
+.stylelintcache
+
+# Cloudflare
+.wrangler
+.dev.vars
+.cloudflare
+workers-site
+worker
+dist-worker
+dist-workers
+dist-worker.js
+dist-workers.js
+worker.js
+workers.js
+.cloudflare/workers
+.cloudflare/pages
+.cloudflare/static
+.cloudflare/worker
+.cloudflare/workers-site
+.cloudflare/worker.js
+.cloudflare/workers.js
+.cloudflare/worker.min.js
+.cloudflare/workers.min.js
+.cloudflare/worker.js.map
+.cloudflare/workers.js.map
+.cloudflare/worker.min.js.map
+.cloudflare/workers.min.js.map
+
+# Misc
+.DS_Store
+Thumbs.db

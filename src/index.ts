@@ -523,14 +523,13 @@ function emptyDir(dir: string) {
   if (!existsSync(dir)) {
     return
   }
-  for (const file of readdirSync(dir)) {
+  for (const file of readdirSync(dir, { withFileTypes: true })) {
     // Skip .git directory only
-    if (file === '.git') {
+    if (file.name === '.git') {
       continue
     }
-    const filePath = join(dir, file)
-    const stat = statSync(filePath)
-    if (stat.isDirectory()) {
+    const filePath = join(dir, file.name)
+    if (file.isDirectory()) {
       rmSync(filePath, { recursive: true, force: true })
     } else {
       unlinkSync(filePath)

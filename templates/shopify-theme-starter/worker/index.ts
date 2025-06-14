@@ -9,7 +9,7 @@ const app = new Hono<{ Bindings: Bindings }>()
 
 // CORS configuration for all routes
 app.use('*', cors({
-    origin: ['https://pxmdev.myshopify.com', 'https://pxmdev.com'],
+    origin: ['https://your-store.myshopify.com', 'https://your-store.com'],
     allowHeaders: ['Content-Type', 'Authorization'],
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     exposeHeaders: ['Content-Type'],

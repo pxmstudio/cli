@@ -69,12 +69,11 @@ type AddonPackage = {
 function copyDir(src: string, dest: string) {
   mkdirSync(dest, { recursive: true })
   
-  for (const file of readdirSync(src)) {
-    const srcFile = join(src, file)
-    const destFile = join(dest, file)
+  for (const file of readdirSync(src, { withFileTypes: true })) {
+    const srcFile = join(src, file.name)
+    const destFile = join(dest, file.name)
     
-    const stat = statSync(srcFile)
-    if (stat.isDirectory()) {
+    if (file.isDirectory()) {
       copyDir(srcFile, destFile)
     } else {
       copyFileSync(srcFile, destFile)
@@ -515,8 +514,8 @@ function emptyDir(dir: string) {
     return
   }
   for (const file of readdirSync(dir)) {
-    // Skip .git directory and hidden files
-    if (file === '.git' || file.startsWith('.')) {
+    // Skip .git directory only
+    if (file === '.git') {
       continue
     }
     const filePath = join(dir, file)

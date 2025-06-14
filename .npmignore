@@ -1,0 +1,13 @@
+# Development files
+.git/
+.gitignore
+.npmignore
+node_modules/
+scripts/
+src/
+tsconfig.json
+*.log
+
+# Keep templates and dist
+!templates/
+!dist/ 

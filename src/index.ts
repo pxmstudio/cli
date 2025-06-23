@@ -24,6 +24,12 @@ const WEBFLOW_WEBSITE_TEMPLATES: Template[] = [
     description: 'Basic Vite setup with Cloudflare Workers backend'
   },
   {
+    name: 'basic-vercel',
+    display: 'Vite + Vercel',
+    color: green,
+    description: 'Basic Vite setup with Vercel Edge Functions backend'
+  },
+  {
     name: 'workers-d1',
     display: 'Vite + D1',
     color: yellow,
@@ -371,8 +377,9 @@ ${cyan('Examples:')}
   
   // Verify template structure
   const workerDir = join(templateDir, 'worker')
-  if (!existsSync(workerDir)) {
-    console.error(red('✖') + ` Template "${selectedTemplate}" is missing the worker folder!`)
+  const apiDir = join(templateDir, 'api')
+  if (!existsSync(workerDir) && !existsSync(apiDir)) {
+    console.error(red('✖') + ` Template "${selectedTemplate}" is missing the worker or api folder!`)
     console.error(yellow('  Please report this issue at: https://github.com/pxmstudio/cli/issues'))
     process.exit(1)
   }
@@ -435,6 +442,14 @@ ${cyan('Examples:')}
     console.log(`  npm run db:studio`)
   }
   
+  if (selectedTemplate === 'basic-vercel') {
+    console.log(`\n${green('Vercel Setup:')}`)
+    console.log(`  1. Install Vercel CLI: npm install -g vercel`)
+    console.log(`  2. Deploy to Vercel: vercel`)
+    console.log(`  3. For production: vercel --prod`)
+    console.log(`  ${yellow('Note:')} Your API will be available at your Vercel domain`)
+  }
+  
   if (platform === 'shopify') {
     console.log(`\n${green('Shopify Theme Setup:')}`)
     console.log(`  1. Install Shopify CLI: npm install -g @shopify/cli`)
@@ -456,8 +471,13 @@ ${cyan('Examples:')}
     console.log(`       (function () {`)
     console.log(`         const CONFIG = {`)
     console.log(`           localhost: 'http://localhost:5173',`)
-    console.log(`           staging: 'https://[deployment-id]-your-worker.workers.dev', `)
-    console.log(`           production: 'https://your-worker.workers.dev'`)
+    if (selectedTemplate === 'basic-vercel') {
+      console.log(`           staging: 'https://your-project-staging.vercel.app', `)
+      console.log(`           production: 'https://your-project.vercel.app'`)
+    } else {
+      console.log(`           staging: 'https://[deployment-id]-your-worker.workers.dev', `)
+      console.log(`           production: 'https://your-worker.workers.dev'`)
+    }
     console.log(`         };`)
     console.log(``)
     console.log(`         const PATHS = {`)
@@ -473,7 +493,6 @@ ${cyan('Examples:')}
     console.log(`             script.onerror = () => console.error('Failed to load:', url);`)
     console.log(`             document.body.appendChild(script);`)
     console.log(`           });`)
-    console.log(`         }`)
     console.log(``)
     console.log(`         function init() {`)
     console.log(`           // Try localhost first`)
@@ -503,9 +522,14 @@ ${cyan('Examples:')}
     console.log(`           : init();`)
     console.log(`       })();`)
     console.log(`     </script>`)
-    console.log(`  4. Update the CONFIG object with your worker URLs:`)
-    console.log(`     - staging: Your Cloudflare Workers staging URL`)
-    console.log(`     - production: Your Cloudflare Workers production URL`)
+    console.log(`  4. Update the CONFIG object with your ${selectedTemplate === 'basic-vercel' ? 'Vercel' : 'worker'} URLs:`)
+    if (selectedTemplate === 'basic-vercel') {
+      console.log(`     - staging: Your Vercel staging URL`)
+      console.log(`     - production: Your Vercel production URL`)
+    } else {
+      console.log(`     - staging: Your Cloudflare Workers staging URL`)
+      console.log(`     - production: Your Cloudflare Workers production URL`)
+    }
     console.log(`  5. Save and publish your Webflow project`)
   }
   
@@ -553,4 +577,4 @@ function toValidPackageName(projectName: string) {
 init().catch((e) => {
   console.error(e)
   process.exit(1)
-}) 
+})
